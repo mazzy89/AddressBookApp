@@ -4,6 +4,7 @@
   "description": "\"The app enable its users to easily manage a simple contact list\"",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
