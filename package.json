@@ -11,5 +11,10 @@
     "contact"
   ],
   "author": "mazzy <apocalipse89@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^1.1.0",
+    "hapi": "^8.4.0",
+    "hapi-router": "^3.0.1"
+  }
 }
