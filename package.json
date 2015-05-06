@@ -1,0 +1,15 @@
+{
+  "name": "AddressBook",
+  "version": "1.0.0",
+  "description": "\"The app enable its users to easily manage a simple contact list\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "address",
+    "contact"
+  ],
+  "author": "mazzy <apocalipse89@gmail.com>",
+  "license": "MIT"
+}
