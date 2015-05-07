@@ -3,9 +3,10 @@
     "serverPort": 3000,
     "username": "root",
     "password": "password",
-    "database": "addressapp",
+    "database": "addressbook",
     "host": "localhost",
     "dialect": "mysql",
-    "secretKey": "secret" 
+    "secretKey": "secret",
+    "firebaseUrl": "https://sweltering-torch-8820.firebaseio.com/web/addressapp"
   }
 }
