@@ -1,0 +1,11 @@
+{
+  "development": {
+    "serverPort": 3000,
+    "username": "root",
+    "password": "password",
+    "database": "addressapp",
+    "host": "localhost",
+    "dialect": "mysql",
+    "secretKey": "secret" 
+  }
+}
