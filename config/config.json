@@ -1,0 +1,26 @@
+{
+  "development": {
+    "serverPort": 3000,
+    "username": "root",
+    "password": "password",
+    "database": "addressbook",
+    "host": "localhost",
+    "dialect": "mysql",
+    "secretKey": "secret",
+    "firebaseUrl": "https://sweltering-torch-8820.firebaseio.com/web/addressapp",
+    "awsRegion": "eu-west-1",
+    "bucketName": "strv-addressbook-photos"
+  }, 
+  "test": {
+    "serverPort": 3000,
+    "username": "root",
+    "password": "password",
+    "database": "addressbook",
+    "host": "localhost",
+    "dialect": "mysql",
+    "secretKey": "secret",
+    "firebaseUrl": "https://sweltering-torch-8820.firebaseio.com/web/addressapp",
+    "awsRegion": "eu-west-1",
+    "bucketName": "strv-addressbook-photos"
+  }
+}

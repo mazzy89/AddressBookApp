@@ -4,12 +4,34 @@
   "description": "\"The app enable its users to easily manage a simple contact list\"",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "gulp",
+    "test": "lab"
   },
   "keywords": [
     "address",
     "contact"
   ],
   "author": "mazzy <apocalipse89@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.1.26",
+    "bcrypt": "^0.8.3",
+    "boom": "^2.7.1",
+    "firebase": "^2.2.4",
+    "hapi": "^8.4.0",
+    "hapi-auth-jwt2": "^4.3.2",
+    "hapi-router": "^3.0.1",
+    "joi": "^6.4.1",
+    "jsonwebtoken": "^5.0.0",
+    "mysql": "^2.6.2",
+    "s3-upload-stream": "^1.0.7",
+    "sequelize": "^2.1.0"
+  },
+  "devDependencies": {
+    "code": "^1.4.0",
+    "gulp": "^3.8.11",
+    "gulp-nodemon": "^2.0.3",
+    "lab": "^5.8.0",
+    "sequelize-cli": "^1.7.0"
+  }
 }
