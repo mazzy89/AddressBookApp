@@ -2,6 +2,7 @@
 
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
+var Joi = require('joi');
 
 var env = process.env.NODE_ENV || 'development';
 var config = require(__dirname + '/../config/config.json')[env];
@@ -28,7 +29,7 @@ exports.register = function(server, options, next) {
                     }
                 }).then(function(account) {
 
-                    // check if the account is valid
+                    // check if the account exists
                     if (account) {
                         return callback(null, true);
                     } else {
@@ -72,7 +73,7 @@ exports.register = function(server, options, next) {
                             } else {
 
                                 var token = jwt.sign(account.get(), config.secretKey, {
-                                    expiresInMinutes: '5'
+                                    expiresInMinutes: '10'
                                 });
 
                                 return reply({
@@ -88,10 +89,17 @@ exports.register = function(server, options, next) {
                         }).code(404);
                     }
                 });
+            },
+            validate: {
+                query: {
+                    email: Joi.string().email().required(),
+                    password: Joi.string().required()
+                }
             }
         }
     });
 
+    // pass the request to the flow
     next();
 };
 
