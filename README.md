@@ -42,6 +42,48 @@ accounts: {
 
 Despite what you have read here above, the photos associated with contacts are saved to an Amazon S3 bucket. In order to open a Microsoft Azure Trial, you need to provide a credit card (Microsoft doesn't accept pre-paid cards).
 
+## Configuration
+
+Before running the application, you have to place a file called `config.json` into the folder `config`. It needs to set the following parameters for the different environements:
+
+- `serverPort`: the connection port of the server
+- `username`: the username to grant access to the database
+- `password`: the password to grant access to the database
+- `database`: the name of the database
+- `host`: IP address or hostname of the server where MySQL runs
+- `dialect`: define which driver use. Please refer to Sequelize doc
+- `secretKey`: the secret key used to create the JWT token
+- `firebaseUrl`: Firebase url
+- `accessKeyId`: Amazon AWS Access Key Id
+- `secretAccessKey`: Amazon AWS Secret Access Key
+- `awsRegion`: Amazon AWS where S3 bucket resides
+- `bucketName`: Amazon AWS S3 bucket name
+
+Here below the suggested structure used:
+
+```javascript
+{
+  "development": {
+    "serverPort": ...
+    "username": ...,
+    "password": ...,
+    "database": ...",
+    "host": ...,
+    "dialect": ...,
+    "secretKey": ...,
+    "firebaseUrl": ...,
+    "accessKeyId": ...,
+    "secretAccessKey": ...,
+    "awsRegion": ...,
+    "bucketName": ...
+  }, 
+  "test": {
+     ...
+  }
+}
+
+```
+
 ## Run
 
 Install the required dependecies:
@@ -50,12 +92,18 @@ Install the required dependecies:
 npm install
 ```
 
+Install locally `gulp`
+
+```
+npm install -g gulp
+```
+
 Run the application: 
 
 ```
 gulp
 ```
 
-NOTE: In order to upload photos on an Amazon S3 bucket you need to have an Amazon AWS account. Create an IAM users and export `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
+NOTE: In order to upload photos on an Amazon S3 bucket you need to have an Amazon AWS account. Create an IAM user and use the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` provided by AWS.
 
 
