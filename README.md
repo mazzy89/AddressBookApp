@@ -21,7 +21,7 @@ The account model is mapped to a table Account with the following schema:
 
 | Id       | Email            | Password         | createdAt      | updatedAt    |
 |---------:|-----------------:|-----------------:|---------------:|-------------:|
-| 1        | name@email.com   | crypted password | creation date  | updated date |
+| 1        | name@email.com   | crypted password | date           | date         |
 
 The contacts data are saved in Firebase with the following structure:
 
