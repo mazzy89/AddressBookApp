@@ -34,7 +34,7 @@ accounts: {
 }
 ```
 
-Despite what you have read here above, the photos associated with contacts are saved to an Amazon S3 bucket. In order to open a Microsoft Azure Trial you need to provide a credit card (Microsoft doesn't accept pre-paid cards).
+Despite what you have read here above, the photos associated with contacts are saved to an Amazon S3 bucket. In order to open a Microsoft Azure Trial, you need to provide a credit card (Microsoft doesn't accept pre-paid cards).
 
 ## Run
 
@@ -50,6 +50,6 @@ Run the application:
 gulp
 ```
 
-NOTE: In order to upload photos on an Amazon S3 bucket you need to have an Amazon AWS account.
+NOTE: In order to upload photos on an Amazon S3 bucket you need to have an Amazon AWS account. Create an IAM users and export `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
 
 
