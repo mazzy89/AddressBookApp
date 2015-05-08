@@ -67,7 +67,7 @@ Here below the suggested structure used:
     "serverPort": ...
     "username": ...,
     "password": ...,
-    "database": ...",
+    "database": ...,
     "host": ...,
     "dialect": ...,
     "secretKey": ...,
