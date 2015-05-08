@@ -1,14 +1,19 @@
 'use strict';
 
 var AWS = require('aws-sdk');
-var s3Stream = require('s3-upload-stream')(new AWS.S3());
-var Firebase = require('firebase');
 
 var env = process.env.NODE_ENV || 'development';
 var config = require(__dirname + '/../config/config.json')[env];
 
-// Ireland region
-AWS.config.region = config.awsRegion;
+// just for test purpouse
+AWS.config.update({
+    accessKeyId: config.accessKeyId,
+    secretAccessKey: config.secretAccessKey,
+    region: config.awsRegion
+});
+
+var s3Stream = require('s3-upload-stream')(new AWS.S3());
+var Firebase = require('firebase');
 
 module.exports = {
 
@@ -18,6 +23,13 @@ module.exports = {
 
         var contactId = request.payload.contactId;
         var file = request.payload.file;
+
+        if(!file.hapi.filename) {
+            return reply({
+                type: "BadDataError",
+                message: "You need to provide a file."
+            }).code(422);
+        }
 
         var accountRef = new Firebase(config.firebaseUrl + '/accounts' + '/' + accountId + '/contacts');
 
