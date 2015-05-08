@@ -16,7 +16,14 @@ In the `middlewares` folder, you can find the plugin which deals with the authen
 
 ### Model layer
 
-The app uses three different layers of persistence. The user accounts are persisted in a MySQL database by using the ORM Sequelize. The contacts data are saved in Firebase with the following structure:
+The app uses three different layers of persistence. The user accounts are persisted in a MySQL database by using the ORM Sequelize.
+The account model is mapped to a table Account with the following schema:
+
+| Id       | Email            | Password         | createdAt      | updatedAt    |
+|---------:|-----------------:|-----------------:|---------------:|-------------:|
+| 1        | name@email.com   | crypted password | creation date  | updated date |
+
+The contacts data are saved in Firebase with the following structure:
 
 ```javascript
 accounts: {
