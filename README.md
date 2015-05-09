@@ -106,4 +106,8 @@ gulp
 
 NOTE: In order to upload photos on an Amazon S3 bucket you need to have an Amazon AWS account. Create an IAM user and use the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` provided by AWS.
 
+## Test
+
+Test API endpoints with [Postman](https://www.getpostman.com/).
+
 
