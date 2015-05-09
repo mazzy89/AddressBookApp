@@ -108,6 +108,6 @@ NOTE: In order to upload photos on an Amazon S3 bucket you need to have an Amazo
 
 ## Test
 
-Test API endpoints with [Postman](https://www.getpostman.com/).
+Tested API endpoints with [Postman](https://www.getpostman.com/).
 
 
