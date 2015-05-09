@@ -12,7 +12,13 @@ Many startups and well-known companies (Paypal, Disney, etc...) moved to Hapi to
 
 The authentication is token based and it's built by recurring to Hapi plugins design pattern in mind. Hapi uses plugins to easily break the application up into isolated pieces of business logic, and reusable utilities. This reason encourages the creation of applications composed by suites of independently deployable services which follow the fresh software design pattern known as Microservices.
 
-In the `middlewares` folder, you can find the plugin which deals with the authentication JWT procedure. The validation of the token when accessing to the resource has been created by using `hapi-auth-jwt2` package. 
+In the `middlewares` folder, you can find the plugin which deals with the authentication JWT procedure. The validation of the token during the accessing procedure to a restricted resource is handled by `hapi-auth-jwt2` package. 
+
+In order to access to the resource, you need to supply a valid token to the header:
+
+```
+curl -v -H "Authorization: valid_token" http://localhost:3000/contacts
+```
 
 ### Model layer
 
