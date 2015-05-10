@@ -31,9 +31,9 @@ module.exports = {
             }).code(422);
         }
 
-        var accountRef = new Firebase(config.firebaseUrl + '/accounts' + '/' + accountId + '/contacts');
+        var contactsRef = new Firebase(config.firebaseUrl + '/accounts' + '/' + accountId + '/contacts');
 
-        accountRef
+        contactsRef
             .child(contactId)
             .once('value', function(snapshot) {
 
