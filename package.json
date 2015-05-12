@@ -1,6 +1,6 @@
 {
   "name": "AddressBook",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "\"The app enable its users to easily manage a simple contact list\"",
   "main": "index.js",
   "scripts": {
