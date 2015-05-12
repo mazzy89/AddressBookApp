@@ -46,6 +46,7 @@ module.exports = {
                     var upload = s3Stream.upload({
                         "Bucket": bucketName,
                         "Key": fileKey,
+                        "ACL": "public-read",
                         "ContentType": file.hapi.headers['content-type']
                     });
 
