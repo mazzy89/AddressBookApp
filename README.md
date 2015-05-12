@@ -1,4 +1,4 @@
-# AddressApp Application
+# AddressBook Application
 
 A RESTful API in Node.js for an AddressBook app. The AddressBook app enables its users to manage a simple contact list by adding new contacts and uploading a profile photos to them. Users of the app are authenticated using their email and password. The Node.js backend app uses three different storage services to maintain the data. User accounts should be stored in any relational database of your choice. Contacts should be stored in Firebase [https://www.firebase.com](https://www.firebase.com) and all the photos associated with contacts should be uploaded to [Microsoft Azure Blob Storage](http://azure.microsoft.com/en-us/documentation/articles/storage-introduction/). 
 
