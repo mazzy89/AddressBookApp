@@ -56,7 +56,6 @@ exports.register = function(server, options, next) {
                     }
                 }).then(function(account) {
 
-                    // the user doesn't exist in the db
                     if (account) {
 
                         bcrypt.compare(password, account.password, function(err, res) {
@@ -83,6 +82,7 @@ exports.register = function(server, options, next) {
                         });
                     } else {
 
+                        // the user doesn't exist in the db
                         return reply({
                             type: 'UserNotFound',
                             message: 'The user account doesn\'t exist'
