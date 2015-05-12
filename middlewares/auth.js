@@ -60,9 +60,9 @@ exports.register = function(server, options, next) {
 
                         bcrypt.compare(password, account.password, function(err, res) {
 
-                            // the user credentials provided are wrong
+                            // password is wrong
                             // res return true if the passwords match
-                            if (account.email !== email || !res) {
+                            if (!res) {
 
                                 return reply({
                                     type: 'InvalidEmailPassword',
