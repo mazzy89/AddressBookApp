@@ -1,0 +1,16 @@
+api:
+  image: addressbook-app
+  links:
+    - db
+  ports:
+    - "80:3000"
+data:
+  image: busybox
+  volumes:
+    - /home/ubuntu/AddressBookApp/data:/var/lib/mysql
+db:
+  image: mysql
+  volumes_from:
+    - data
+  environment:
+    - MYSQL_ROOT_PASSWORD=password
