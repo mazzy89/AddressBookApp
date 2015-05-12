@@ -83,10 +83,15 @@ exports.register = function(server, options, next) {
                     } else {
 
                         // the user doesn't exist in the db
+                        // return reply({
+                        //     type: 'UserNotFound',
+                        //     message: 'The user account doesn\'t exist'
+                        //}).code(404);
+                        
                         return reply({
-                            type: 'UserNotFound',
-                            message: 'The user account doesn\'t exist'
-                        }).code(404);
+                            type: 'InvalidEmailPassword',
+                            message: 'Specified e-mail / password combination is not valid.'
+                        }).code(401);
                     }
                 });
             },
