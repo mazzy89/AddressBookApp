@@ -19,12 +19,8 @@ module.exports = [{
             'hapi-swagger': {
                 responseMessages: [
                     {
-                        code: 201,
-                        message: 'The user account has been created'
-                    },
-                    {
                         code: 400,
-                        message: 'The user account already exist'
+                        message: 'Specified e-mail address is already registered.'
                     }
                 ]
             }
@@ -52,23 +48,14 @@ module.exports = [{
         description: 'Create a new contact',
         notes: 'Create a new address book contact associated to the authenticated user.',
         tags: ['api'],
-        plugins: {
-            'hapi-swagger': {
-                responseMessages: [
-                    {
-                        code: 201,
-                        message: 'The contact has been created'
-                    }
-                ]
-            }
-        },
         validate: {
-            headers: {
-                Authorization: Joi
-                    .string()
-                    .required()
-                    .description('The access token')
-            },
+            headers: Joi
+                .object({
+                    'authorization': Joi
+                        .string()
+                        .required()
+                        .description('The access token')
+                }),
             payload: {
                 firstName: Joi
                     .string()
@@ -96,10 +83,49 @@ module.exports = [{
             allow: 'multipart/form-data'
         },
         handler: photos.uploadAccountPhoto,
+        description: 'Upload a picture contact',
+        notes: 'Upload a picture of a contact on a S3 bucket passing its contact id.',
+        tags: ['api'],
+        plugins: {
+            'hapi-swagger': {
+                payloadType: 'form',
+                responseMessages: [
+                    {
+                        code: 404,
+                        message: 'The contact doesn\'t exist.'
+                    },
+                    {
+                        code: 422,
+                        message: 'You need to provide a file.'
+                    },
+                    {
+                        code: 500,
+                        message: 'An error occurred during the updating of the file.'
+                    },
+
+                ]
+            }
+        },
         validate: {
+           headers: Joi
+                .object({
+                    'authorization': Joi
+                        .string()
+                        .required()
+                        .description('The access token')
+                }),
             payload: {
-                contactId: Joi.string().required(),
-                file: Joi.any().required()
+                contactId: Joi
+                    .string()
+                    .required()
+                    .description('The id of the contact'),
+                file: Joi
+                    .any()
+                    .required()
+                    .meta({
+                        swaggerType: 'file'
+                    })
+                    .description('The picture of the contact get by its id')
             }
         }
     }
