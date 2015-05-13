@@ -12,10 +12,34 @@ module.exports = [{
     config: {
         auth: false,
         handler: accounts.createAccount,
+        description: 'Create a new user account',
+        notes: 'Create a new user account passing the email and the password.',
+        tags: ['api'],
+        plugins: {
+            'hapi-swagger': {
+                responseMessages: [
+                    {
+                        code: 201,
+                        message: 'The user account has been created'
+                    },
+                    {
+                        code: 400,
+                        message: 'The user account already exist'
+                    }
+                ]
+            }
+        },
         validate: {
             payload: {
-                email: Joi.string().email().required(),
-                password: Joi.string().required()
+                email: Joi
+                    .string()
+                    .email()
+                    .required()
+                    .description('The e-mail of the user account'),
+                password: Joi
+                    .string()
+                    .required()
+                    .description('The password of the user account')
             }
         }
     }
