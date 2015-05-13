@@ -54,7 +54,7 @@ module.exports = {
 
                         return reply({
                             type: 'UpdateError',
-                            message: "An error occurred during the updating of the file"
+                            message: "An error occurred during the updating of the file."
                         })
                         .header("Authorization", request.headers.authorization)
                         .code(500);

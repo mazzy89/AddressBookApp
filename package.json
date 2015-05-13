@@ -1,6 +1,6 @@
 {
   "name": "AddressBook",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "\"The app enable its users to easily manage a simple contact list\"",
   "main": "index.js",
   "scripts": {
@@ -21,6 +21,7 @@
     "hapi": "^8.4.0",
     "hapi-auth-jwt2": "^4.3.2",
     "hapi-router": "^3.0.1",
+    "hapi-swagger": "^0.7.3",
     "joi": "^6.4.1",
     "jsonwebtoken": "^5.0.0",
     "mysql": "^2.6.2",
