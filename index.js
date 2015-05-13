@@ -22,6 +22,11 @@ server.register([{
     options: {
         routes: 'routes/*.js'
     }
+},{
+    register: require('hapi-swagger'),
+    options: {
+        apiVersion: require('./package').version
+    }
 }], function(err) {
 
     if (err) {
