@@ -116,4 +116,10 @@ NOTE: In order to upload photos on an Amazon S3 bucket you need to have an Amazo
 
 Tested API endpoints with [Postman](https://www.getpostman.com/).
 
+## Documentation
+
+The project makes use of a hapi.js plugin `hapi-swagger` which self documents the API using the Swagger UI interface. It provides simple forms which developers can use to quickly interact with your API and learn how it works. The forms and documentation are built from the standard hapi.js routes object.
+
+To explore the documention, go to `/documentation`.
+
 
