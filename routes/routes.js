@@ -55,7 +55,7 @@ module.exports = [{
                         .string()
                         .required()
                         .description('The access token')
-                }),
+                }).unknown(),
             payload: {
                 firstName: Joi
                     .string()
@@ -113,11 +113,14 @@ module.exports = [{
                         .string()
                         .required()
                         .description('The access token')
-                }),
+                }).unknown(),
             payload: {
                 contactId: Joi
                     .string()
                     .required()
+                    .meta({
+                        swaggerType: 'body'
+                    })
                     .description('The id of the contact'),
                 file: Joi
                     .any()
