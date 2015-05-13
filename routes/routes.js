@@ -49,11 +49,39 @@ module.exports = [{
     config: {
         auth: 'jwt',
         handler: contacts.createContact,
+        description: 'Create a new contact',
+        notes: 'Create a new address book contact associated to the authenticated user.',
+        tags: ['api'],
+        plugins: {
+            'hapi-swagger': {
+                responseMessages: [
+                    {
+                        code: 201,
+                        message: 'The contact has been created'
+                    }
+                ]
+            }
+        },
         validate: {
+            headers: {
+                Authorization: Joi
+                    .string()
+                    .required()
+                    .description('The access token')
+            },
             payload: {
-                firstName: Joi.string().required(),
-                lastName: Joi.string().required(),
-                phone: Joi.string().required()
+                firstName: Joi
+                    .string()
+                    .required()
+                    .description('The first name of the contact'),
+                lastName: Joi
+                    .string()
+                    .required()
+                    .description('The last name of the contact'),
+                phone: Joi
+                    .string()
+                    .required()
+                    .description('The phone number of the contact')
             }
         }
     }
