@@ -95,10 +95,34 @@ exports.register = function(server, options, next) {
                     }
                 });
             },
+            description: 'Get a new access token',
+            notes: 'Get a new access token passing the user credentials',
+            tags: ['api'],
+            plugins: {
+                'hapi-swagger': {
+                    responseMessages: [
+                        {
+                            code: 200,
+                            message: 'Return the new access token'
+                        },
+                        {
+                            code: 401,
+                            message: 'The specified e-mail and / or password combination is not valid.'
+                        }
+                    ]
+                }
+            },
             validate: {
                 query: {
-                    email: Joi.string().email().required(),
-                    password: Joi.string().required()
+                    email: Joi
+                        .string()
+                        .email()
+                        .required()
+                        .description('The e-mail of the user account'),
+                    password: Joi
+                        .string()
+                        .required()
+                        .description('The password of the user account')
                 }
             }
         }
