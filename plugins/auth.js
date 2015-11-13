@@ -1,77 +1,76 @@
 'use strict';
 
-var jwt = require('jsonwebtoken');
-var bcrypt = require('bcrypt');
-var Joi = require('joi');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const Joi = require('joi');
 
-var env = process.env.NODE_ENV || 'development';
-var config = require(__dirname + '/../config/config.json')[env];
+const env = process.env.NODE_ENV || 'development';
+const config = require(__dirname + '/../config/config.json')[env];
 
-var models = require('../models');
+const db = require('../database');
 
-exports.register = function(server, options, next) {
+const internals = {};
 
-    server.register({
+internals.validateFunc = (decoded, request, callback) => {
+    db.Account.find({
+        where: {
+            'email': decoded.email
+        }
+    }).then((account) => {
+        // check if the account exists
+        if (account) {
+            return callback(null, true);
+        } else {
+            return callback(null, false);
+        }
+    });
+}
+
+exports.register = (plugin, options, next) {
+
+    plugin.register({
         register: require('hapi-auth-jwt2')
-    }, function(err) {
+    }, (err) => {
 
         if (err) {
-            console.log('An error occured during the registration of hapi-auth-jwt2 plugin');
+            console.error('An error occured during the registration of hapi-auth-jwt2 plugin');
         }
 
-        server.auth.strategy('jwt', 'jwt', true, {
+        plugin.auth.strategy('jwt', 'jwt', true, {
             key: config.secretKey,
-            validateFunc: function(decoded, request, callback) {
-                
-                models.Account.find({
-                    where: {
-                        'email': decoded.email
-                    }
-                }).then(function(account) {
-
-                    // check if the account exists
-                    if (account) {
-                        return callback(null, true);
-                    } else {
-                        return callback(null, false);
-                    }
-                });
-            }
+            validateFunc: internals.validateFunc
         });
     });
 
-    server.route({
+    plugin.route({
         method: 'GET',
         path: '/access_token',
         config: {
             auth: false,
-            handler: function(request, reply) {
+            handler: (request, reply) => {
 
-                var email = request.query.email;
-                var password = request.query.password;
+                const response = {};
 
-                models.Account.find({
+                const email = request.query.email;
+                const password = request.query.password;
+
+                db.Account.find({
                     where: {
                         'email': email
                     }
-                }).then(function(account) {
+                }).then((account) => {
 
                     if (account) {
-
-                        bcrypt.compare(password, account.password, function(err, res) {
-
+                        bcrypt.compare(password, account.password, (err, res) => {
                             // password is wrong
                             // res return true if the passwords match
                             if (!res) {
-
-                                return reply({
-                                    type: 'InvalidEmailPassword',
-                                    message: 'Specified e-mail / password combination is not valid.'
-                                }).code(401);
-
+                                response.type = 'InvalidEmailPassword';
+                                response.message = 'SSpecified e-mail/password combination is not valid.'
+                                return reply(response).code(401);
                             } else {
 
-                                var token = jwt.sign(account.get(), config.secretKey, {
+                                const token = jwt.sign(account.get(), config.secretKey, {
                                     expiresInMinutes: '10'
                                 });
 
@@ -87,7 +86,7 @@ exports.register = function(server, options, next) {
                         //     type: 'UserNotFound',
                         //     message: 'The user account doesn\'t exist'
                         //}).code(404);
-                        
+
                         return reply({
                             type: 'InvalidEmailPassword',
                             message: 'Specified e-mail / password combination is not valid.'
@@ -130,5 +129,5 @@ exports.register = function(server, options, next) {
 
 exports.register.attributes = {
     'name': 'auth',
-    'version': '1.1.0'
+    'version': require('../package.json').version
 }
