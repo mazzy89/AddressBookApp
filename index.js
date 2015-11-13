@@ -1,21 +1,20 @@
 'use strict';
 
-var Hapi = require('hapi');
+const Hapi = require('hapi');
 
-var env = process.env.NODE_ENV || 'development';
-var config = require(__dirname + '/config/config.json')[env];
+const env = process.env.NODE_ENV || 'development';
+const config = require(__dirname + '/config/config.json')[env];
 
-var models = require('./models');
+const db = require('./database');
 
-var server = new Hapi.Server();
+const server = new Hapi.Server();
 
 server.connection({
-
     port: config.serverPort
 });
 
 server.register([{
-    register: require('./middlewares/auth')
+    register: require('./plugins/auth')
 },{
 
     register: require('hapi-router'),
@@ -27,17 +26,14 @@ server.register([{
     options: {
         apiVersion: require('./package').version
     }
-}], function(err) {
-
+}], (err) => {
     if (err) {
-        console.log('An error occured during the loading of a plugin');
+        console.error('An error occured during the loading of a plugin');
     }
 });
 
-models.sequelize.sync().then(function() {
-    
+db.sequelize.sync().then(() => {
     server.start(function() {
-        console.log('Server running at', server.info.uri);
-    }); 
+        console.log(`Server running at ${server.info.uri}`);
+    });
 });
-
