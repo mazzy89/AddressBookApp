@@ -1,10 +1,10 @@
 'use strict';
 
-var Joi = require('joi');
+const Joi = require('joi');
 
-var accounts = require('../handlers/accounts');
-var contacts = require('../handlers/contacts');
-var photos = require('../handlers/photos');
+const accounts = require('../handlers/accounts');
+const contacts = require('../handlers/contacts');
+const photos = require('../handlers/photos');
 
 module.exports = [{
     method: 'POST',
